@@ -1,5 +1,5 @@
-# ReadHub-BlackBerry-10
-ReadHub for BlackBerry 10
+# Readhub-BlackBerry-10
+Readhub for BlackBerry 10
 
 Readhub 是无码科技团队的一个副产品。
 
