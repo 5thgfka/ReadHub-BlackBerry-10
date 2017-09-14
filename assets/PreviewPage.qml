@@ -14,6 +14,7 @@ Sheet {
                 }
             }
         }
+        actionBarVisibility: ChromeVisibility.Hidden
         ScrollView {
             id: scrollView
             scrollViewProperties {
@@ -27,4 +28,5 @@ Sheet {
             }
         }
     }
+    
 }
