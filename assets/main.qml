@@ -26,200 +26,47 @@ TabbedPane {
             }
         }
     }
-    showTabsOnActionBar: true
+    id: tabroot
+    property variant currentNav: activeTab.nav
+    property bool showBackButton: true
+    showTabsOnActionBar: false
     Tab { //First tab
-        // Localized text with the dynamic translation and locale updates support
-        title: qsTr("热门话题") + Retranslate.onLocaleOrLanguageChanged
+        title: qsTr("热门话题")
         imageSource: "asset:///images/icon_hot.png"
-        Page {
-            titleBar: TitleBar {
-                // Localized text with the dynamic translation and locale updates support
-                title: qsTr("ReadHub - 热门话题") + Retranslate.onLocaleOrLanguageChanged
-            }
-            Container {
-                layout: DockLayout {
-                }
-                Container {
-                    horizontalAlignment: HorizontalAlignment.Fill
-                    verticalAlignment: VerticalAlignment.Fill
-                    
-                    leftPadding: ui.du(3.3)
-                    topPadding: ui.du(3.3)
-                    rightPadding: ui.du(3.3)
-                    bottomPadding: ui.du(3.3)
-                    //! [1]
-                    // The list view with all events
-                    ListView {
-                        dataModel: theTopNewsItemsModel
-                        
-                        listItemComponents: [
-                            ListItemComponent {
-                                type: "item"
-                                
-                                Container {
-                                    
-                                    Label {
-                                        text: ListItemData.title
-                                        multiline: true
-                                        textStyle.color: ui.palette.primary
-                                    }
-                                    Divider {
-                                    }
-                                    Label {
-                                        text: ListItemData.summary
-                                        multiline: true
-                                        verticalAlignment: VerticalAlignment.Top
-                                        horizontalAlignment: HorizontalAlignment.Fill
-                                    }
-                                    Label {
-                                        text: ListItemData.publishDate
-                                        horizontalAlignment: HorizontalAlignment.Right
-                                        multiline: true
-                                        bottomMargin: 10.0
-                                    }
-                                }
-                            }
-                        ]
-                        onTriggered: {
-                            var selected = theTopNewsItemsModel.data(indexPath);
-                            var openurl = selected.instantView;
-                            var prevPage = previewPage.createObject(_app);
-                            prevPage.url = openurl;
-                            
-                            prevPage.open();
-                        }
-                    }
-                }
+        property alias nav: nav_hot
+        NavigationPane {
+            id: nav_hot
+            backButtonsVisible: tabroot.showBackButton
+            
+            ListHotpageView {
+                nav: nav_hot
             }
         }
-    } //End of first tab
+    }//End of first tab
+    
     Tab { //Second tab
         title: qsTr("科技动态") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/icon_tech.png"
-        Page {
-            titleBar: TitleBar {
-                // Localized text with the dynamic translation and locale updates support
-                title: qsTr("ReadHub - 科技动态") + Retranslate.onLocaleOrLanguageChanged
-            }
-            Container {
-                layout: DockLayout {
-                }
-                Container {
-                    horizontalAlignment: HorizontalAlignment.Fill
-                    verticalAlignment: VerticalAlignment.Fill
-                    
-                    leftPadding: ui.du(3.3)
-                    topPadding: ui.du(3.3)
-                    rightPadding: ui.du(3.3)
-                    bottomPadding: ui.du(3.3)
-                    //! [1]
-                    // The list view with all events
-                    ListView {
-                        dataModel: theTechItemsModel
-                        
-                        listItemComponents: [
-                            ListItemComponent {
-                                type: "item"
-                                
-                                Container {
-                                    
-                                    Label {
-                                        text: ListItemData.title
-                                        multiline: true
-                                        textStyle.color: ui.palette.primary
-                                    }
-                                    Divider {
-                                    }
-                                    Label {
-                                        text: ListItemData.summary
-                                        multiline: true
-                                        verticalAlignment: VerticalAlignment.Top
-                                        horizontalAlignment: HorizontalAlignment.Fill
-                                    }
-                                    Label {
-                                        text: ListItemData.publishDate
-                                        horizontalAlignment: HorizontalAlignment.Right
-                                        multiline: true
-                                        bottomMargin: 10.0
-                                    }
-                                }
-                            }
-                        ]
-                        onTriggered: {
-                            var selected = theTechItemsModel.data(indexPath);
-                            var openurl = selected.instantView;
-                            var prevPage = previewPage.createObject(_app);
-                            prevPage.url = openurl;
-                            
-                            prevPage.open();
-                        }
-                    }
-                }
+        property alias nav: nav_tech
+        NavigationPane {
+            id: nav_tech
+            backButtonsVisible: tabroot.showBackButton
+            
+            ListTechpageView {
+                nav: nav_tech
             }
         }
     } //End of second tab
     Tab { //Third tab
         title: qsTr("开发者资讯") + Retranslate.onLocaleOrLanguageChanged
         imageSource: "asset:///images/icon_technews.png"
-        Page {
-            titleBar: TitleBar {
-                // Localized text with the dynamic translation and locale updates support
-                title: qsTr("ReadHub - 开发者资讯") + Retranslate.onLocaleOrLanguageChanged
-            }
-            Container {
-                layout: DockLayout {
-                }
-                Container {
-                    horizontalAlignment: HorizontalAlignment.Fill
-                    verticalAlignment: VerticalAlignment.Fill
-                    
-                    leftPadding: ui.du(3.3)
-                    topPadding: ui.du(3.3)
-                    rightPadding: ui.du(3.3)
-                    bottomPadding: ui.du(3.3)
-                    //! [1]
-                    // The list view with all events
-                    ListView {
-                        dataModel: theTechNewsItemsModel
-                        
-                        listItemComponents: [
-                            ListItemComponent {
-                                type: "item"
-                                
-                                Container {
-                                    
-                                    Label {
-                                        text: ListItemData.title
-                                        multiline: true
-                                        textStyle.color: ui.palette.primary
-                                    }
-                                    Divider {
-                                    }
-                                    Label {
-                                        text: ListItemData.summary
-                                        multiline: true
-                                        verticalAlignment: VerticalAlignment.Top
-                                        horizontalAlignment: HorizontalAlignment.Fill
-                                    }
-                                    Label {
-                                        text: ListItemData.publishDate
-                                        horizontalAlignment: HorizontalAlignment.Right
-                                        multiline: true
-                                        bottomMargin: 10.0
-                                    }
-                                }
-                            }
-                        ]
-                        onTriggered: {
-                            var selected = theTechNewsItemsModel.data(indexPath);
-                            var openurl = selected.instantView;
-                            var prevPage = previewPage.createObject(_app);
-                            prevPage.url = openurl;
-                            
-                            prevPage.open();
-                        }
-                    }
-                }
+        property alias nav: nav_technews
+        NavigationPane {
+            id: nav_technews
+            backButtonsVisible: tabroot.showBackButton
+            
+            ListTechnewspageView {
+                nav: nav_technews
             }
         }
     } //End of third tab
@@ -236,6 +83,7 @@ TabbedPane {
             var itemObj = JSON.parse(resp);
             itemObj.data.map(function(x){
                 var itemMap = {
+                    "id": x.id,
                     "title": x.title,
                     "summary": x.summary,
                     "publishDate": x.publishDate,
