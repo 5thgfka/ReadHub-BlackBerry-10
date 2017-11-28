@@ -59,6 +59,15 @@ Page {
                     hotTrackPageView.setTopicId(nid);
                     nav.push(hotTrackPageView);
                 }
+                attachedObjects: [
+                    ListScrollStateHandler{
+                        onScrollingChanged: {
+                            if(scrolling && atEnd){
+                                // load more.
+                            }
+                        }
+                    }
+                ]
             }
         }
     }

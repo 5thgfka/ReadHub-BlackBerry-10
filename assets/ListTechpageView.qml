@@ -60,6 +60,15 @@ Page {
                     
                     prevPage.open();
                 }
+                attachedObjects: [
+                    ListScrollStateHandler{
+                        onScrollingChanged: {
+                            if(scrolling && atEnd){
+                                // load more.
+                            }
+                        }
+                    }
+                ]
             }
         }
     }
